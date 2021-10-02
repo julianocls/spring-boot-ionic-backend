@@ -11,7 +11,7 @@ import com.santosjuliano.cursomc.domain.Categoria;
 import com.santosjuliano.cursomc.service.CategoriaService;
 
 @RestController
-@RequestMapping("/categoria")
+@RequestMapping("/categorias")
 public class CategoriaResource {
 
 	@Autowired
@@ -22,6 +22,6 @@ public class CategoriaResource {
 
 		Categoria categoria = service.buscar(id);
 
-		return ResponseEntity.ok(categoria);
+		return ResponseEntity.ok().body(categoria);
 	}
 }

@@ -14,16 +14,16 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Estado implements Serializable {
-
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 
 	@JsonBackReference
-	@OneToMany(mappedBy = "estado")
+	@OneToMany(mappedBy="estado")
 	private List<Cidade> cidades = new ArrayList<>();
 
 	public Estado() {
@@ -83,5 +83,7 @@ public class Estado implements Serializable {
 			return false;
 		return true;
 	}
+
+
 
 }
