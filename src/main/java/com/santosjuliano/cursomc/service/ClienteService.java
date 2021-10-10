@@ -33,10 +33,10 @@ public class ClienteService {
 		return repository.save(cliente);
 	}
 
-	public Cliente update(Cliente cliente) {
-		Cliente objOld = find(cliente.getId());
-		updateData(cliente, objOld);	
-		return repository.save(cliente);
+	public Cliente update(Cliente obj) {
+		Cliente objOld = find(obj.getId());
+		updateData(obj, objOld);	
+		return repository.save(obj);
 	}
 
 	public void delete(Integer id) {
@@ -61,8 +61,8 @@ public class ClienteService {
 		return new Cliente(objDTO.getId(), objDTO.getNome(), objDTO.getEmail(), null, null);
 	}
 
-	private void updateData(Cliente cliente, Cliente objOld) {
-		cliente.setCpfOuCnpj(objOld.getCpfOuCnpj());
-		cliente.setTipo(objOld.getTipo());
+	private void updateData(Cliente obj, Cliente objOld) {
+		obj.setCpfOuCnpj(objOld.getCpfOuCnpj());
+		obj.setTipo(objOld.getTipo());
 	}
 }
