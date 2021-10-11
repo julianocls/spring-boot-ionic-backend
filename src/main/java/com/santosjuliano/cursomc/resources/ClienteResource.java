@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.santosjuliano.cursomc.domain.Cliente;
 import com.santosjuliano.cursomc.dto.ClienteDTO;
+import com.santosjuliano.cursomc.dto.ClienteNewDTO;
 import com.santosjuliano.cursomc.service.ClienteService;
 
 @RestController
@@ -33,13 +34,12 @@ public class ClienteResource {
 		Cliente cliente = service.find(id);
 		return ResponseEntity.ok().body(cliente);
 	}
-	
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteDTO clienteDTO) {
-		Cliente cliente = service.fromDto(clienteDTO);
-		cliente = service.insert(cliente);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getId()).toUri();
+	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objNewDTO) {
+		Cliente obj = service.fromDto(objNewDTO);
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
