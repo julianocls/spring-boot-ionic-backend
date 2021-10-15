@@ -94,6 +94,18 @@ public class Pedido implements Serializable {
 		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
 
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedido> itens) {
+		this.itens = itens;
+	}
+	
+	public Double getTotal() {
+		return itens.stream().mapToDouble(i -> i.getSubTotal()).sum();
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -119,12 +131,5 @@ public class Pedido implements Serializable {
 		return true;
 	}
 
-	public Set<ItemPedido> getItens() {
-		return itens;
-	}
-
-	public void setItens(Set<ItemPedido> itens) {
-		this.itens = itens;
-	}
 
 }
