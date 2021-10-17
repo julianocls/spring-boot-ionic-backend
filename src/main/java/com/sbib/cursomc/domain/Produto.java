@@ -19,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Produto implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -49,13 +48,11 @@ public class Produto implements Serializable {
 
 	@JsonIgnore
 	public List<Pedido> getPedidos() {
-		List<Pedido> pedidos = new ArrayList<>();
-
-		for (ItemPedido p : itens) {
-			pedidos.add(p.getPedido());
+		List<Pedido> lista = new ArrayList<>();
+		for (ItemPedido x : itens) {
+			lista.add(x.getPedido());
 		}
-
-		return pedidos;
+		return lista;
 	}
 
 	public Integer getId() {
@@ -86,8 +83,16 @@ public class Produto implements Serializable {
 		return categorias;
 	}
 
-	public void setCategorias(List<Categoria> categoria) {
-		this.categorias = categoria;
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
+
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedido> itens) {
+		this.itens = itens;
 	}
 
 	@Override
@@ -113,14 +118,6 @@ public class Produto implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-
-	public Set<ItemPedido> getItens() {
-		return itens;
-	}
-
-	public void setItens(Set<ItemPedido> itens) {
-		this.itens = itens;
 	}
 
 }
